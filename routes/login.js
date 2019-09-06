@@ -1,31 +1,17 @@
-// Requires
+// * Requires
 var express = require('express');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var SEED = require('../config/config').SEED;
 
-//Inicializar variables
+
+// * Initiation valuables
 var app = express();
 
-// Importando el schema
+//  * Exported
 var Usuario = require('../models/usuario');
 
-
-/* app.post('/', (req, res) => {
-    var body = req.body;
-
-
-    // Crear un token !!
-
-    res.status(200).json({
-        ok: true,
-        body: body
-    });
-
-
-});
- */
-
+// * Login Service
 app.post('/', (req, res) => {
     var body = req.body;
 
@@ -54,7 +40,7 @@ app.post('/', (req, res) => {
             });
         }
 
-        // Crear un token !!
+        //**  T O K E N  **// 
         usuarioBD.password = ':)';
         var token = jwt.sign({ usuario: usuarioBD }, SEED, { expiresIn: 14400 });
 
